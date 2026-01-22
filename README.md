@@ -16,3 +16,5 @@ Each folder contains:
 - Mini projects  
 
 This repository acts as my personal knowledge base and progress tracker.
+
+- [Git](./git)
