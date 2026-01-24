@@ -18,9 +18,6 @@ Each folder contains:
 
 This repository acts as my personal knowledge base and progress tracker.
 
-<<<<<<< HEAD
-- [Git](./git)
-=======
 ## ✅ Progress
 
 - Git 🔄
@@ -34,4 +31,3 @@ This repository acts as my personal knowledge base and progress tracker.
 - [Web](./web)
 - [Python](./python)
 - [AI & ML](./ai-and-ml)
->>>>>>> 2c6ba82 (updated Sections in README.md)
