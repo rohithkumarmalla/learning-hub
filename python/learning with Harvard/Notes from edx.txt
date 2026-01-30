@@ -1,0 +1,16 @@
+David J. Malan
+
+Functions & Variables
+Conditionals
+Loops
+Exceptions (catch exeptions)
+Libraries
+Unit Tests
+file I/O
+Regular Expressions
+Object-Oriented Programming
+
+on VS Code Terminal
+code hello.py --> creates a python file
+python hello.py --> runs the file
+
