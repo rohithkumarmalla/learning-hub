@@ -14,3 +14,29 @@ on VS Code Terminal
 code hello.py --> creates a python file
 python hello.py --> runs the file
 
+Pseudocode - Structuring code using comments
+
+We can add a default value inside functions 
+def hello(name="world"):
+
+terminal commands
+ls
+cp
+mv
+rm
+mkdir
+cd
+rmdir
+cd
+rmdir
+clear
+
+to change global variables write
+global <variable name>
+
+we can use while loop to run infinately until user gives correct input
+
+We can use _ in a for loop
+for _ in range(3):
+
+we can use print to sep and control its end
