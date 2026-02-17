@@ -40,3 +40,42 @@ We can use _ in a for loop
 for _ in range(3):
 
 we can use print to sep and control its end
+
+
+##Dictionaries
+
+name age gender
+harry 20 Male
+peter 20 Male
+angel 18 FeMale
+
+dict = [
+{"name": "harry", "age": 20, "gender": "male"},
+{"name": "peter", "age": 20, "gender": "male"},
+{"name": "angel", "age": 18, "gender": "female"},
+]
+
+name age gender
+harry 20 Male
+name age gender
+peter 20 Male
+name age gender
+angel 18 FeMale
+
+
+dict = 
+{ "name": "value",
+  "name": "value"
+}
+
+dict["name"] --> to get value
+dict.get("address", NA) --> add a default value if the key is not accesable
+for d in dict: --> to get keys
+   print(d)
+for d in dict.keys(): --> to get keys
+   print(d)
+
+.values --> to get values
+dict.update({"address": "New York", "Code": "NY"}) --> Add a dictionary to update the dict
+
+
