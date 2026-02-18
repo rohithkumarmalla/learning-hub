@@ -78,4 +78,26 @@ for d in dict.keys(): --> to get keys
 .values --> to get values
 dict.update({"address": "New York", "Code": "NY"}) --> Add a dictionary to update the dict
 
+### Methods
+dictionary 
+.pop()
+.clear()
+.update() - add another dictionary
+.keys()
+.items()
+.values()
 
+Lists
+.pop()
+.extend() - add another list
+.reverese()
+
+import sys
+sys.getsizeof()
+
+tuple
+list comprehensions
+[w for w in words if w>3]
+
+while loops 
+use it when you don't know how many times you want the loop to run
