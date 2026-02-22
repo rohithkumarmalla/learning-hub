@@ -7,8 +7,8 @@ print(f"The sum was: {z}")
 print(f"The rounded sum is: {round(z)}")
 
 # Comma separated
-print(f"{z:,}")
+print(f"Comma separated: {int(z):,}")
 
 # Rounding in formatted upto 2 decimals
 # print(round(z,2))
-print(f"{z:.2f}")
+print(f"float upto 2 decimals: {z:.2f}")

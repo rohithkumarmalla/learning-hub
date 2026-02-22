@@ -1,5 +1,6 @@
 David J. Malan
 
+
 Functions & Variables
 Conditionals
 Loops
@@ -9,6 +10,16 @@ Unit Tests
 file I/O
 Regular Expressions
 Object-Oriented Programming
+
+********* concepts ********
+Dictionaries
+String Methods
+try except
+Libraries
+APIs
+Packages
+*************************
+
 
 on VS Code Terminal
 code hello.py --> creates a python file
@@ -42,7 +53,7 @@ for _ in range(3):
 we can use print to sep and control its end
 
 
-##Dictionaries
+## Dictionaries
 
 name age gender
 harry 20 Male
@@ -78,7 +89,7 @@ for d in dict.keys(): --> to get keys
 .values --> to get values
 dict.update({"address": "New York", "Code": "NY"}) --> Add a dictionary to update the dict
 
-### Methods
+### String Methods
 dictionary 
 .pop()
 .clear()
@@ -86,6 +97,11 @@ dictionary
 .keys()
 .items()
 .values()
+
+string conversions
+:.2f :, :_ :e .....
+a = 100000000
+b = int(f'{a:,}')   # output 100,000,000
 
 Lists
 .pop()
@@ -101,3 +117,57 @@ list comprehensions
 
 while loops 
 use it when you don't know how many times you want the loop to run
+
+## try except
+try runs the code we want
+except caches any errors and runs the code inside it
+finally runs regardless of try and cache
+else runs if except didn't cache the error
+
+try:
+   ...
+except ValueError:
+   ...
+else:
+   ...
+finally:
+   ...
+
+use tuple in except, for multiple exception cache
+eg: except (ValueError, ZeroDivisionError,...)
+
+pass is an argument the just passes the block
+
+raise Exception("hey this is an exception")
+
+## Libraries
+we can use modules that are in python and can also install them using pip
+eg: pip install cowsay
+pip install requests
+
+import sys
+import statistics
+from random import choice
+
+sys.argv --> stores the command line arguments as a list 
+python itunes.py 5
+sys.argv[0] is itunes.py
+sys.argv[1] is 5
+
+## APIs
+import requests
+
+o = requests.get("https://.....")
+a = o.json() to see the response
+
+To see it in a formatted way
+***
+import json
+result  = json.dumps(a, indent=2)
+print(result)
+***
+
+## Packages
+we can use our functions as packages, make sure the file has __name__ == __"main"__ in it
+or it will run the entire code again
+
