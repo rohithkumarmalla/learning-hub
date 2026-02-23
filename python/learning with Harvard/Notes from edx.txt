@@ -17,7 +17,7 @@ String Methods
 try except
 Libraries
 APIs
-Packages
+Modules & Packages
 *************************
 
 
@@ -167,7 +167,54 @@ result  = json.dumps(a, indent=2)
 print(result)
 ***
 
-## Packages
-we can use our functions as packages, make sure the file has __name__ == __"main"__ in it
+API Check
+artist = input("artist: ")
+try:
+  response = requests.get(
+    "http://....",
+    {"q": artist}    # passing a dictionary as a query parameter
+    )
+  response.raise_for_status()
+except requestsHTTPError:
+  print("Couldn't complete your request")
+  return
+
+
+## Modules & Packages
+we can use our functions as Modules, make sure the file has __name__ == __"main"__ in it
 or it will run the entire code again
 
+and the syntax in the current file will be
+from module import function
+
+Similarly, we can do the same for packages as well
+Packages are a folder that contains different modules
+
+Syntax
+from package.module import function
+
+### random
+cards = ["jack", "queen", "king"]
+random.choice(cards) # gives a random card
+random.choices(cards, k=2) # gives two random cards (can repeat - ["jack", "jack"])
+random.choices(cards, weights=[100,0,0], k=2) # Always gives ["jack"]
+
+random.sample(cards, k=2) # it gives unique cards (no repetetion)
+
+while debugging we need to keep the values samw even for random function
+seed # keeps the random function gives same values every time
+
+random.seed(1) # always gives ["jack", "king"]
+random.choices(cards, k=2)
+
+## Style
+peps.python.org/pep-0008/
+pylint (pip install) - shows the changes
+
+pycodestyle.pycqa.org - pycodestyle - corrects the styles
+pycodestyle --first optparse.py
+
+black.readthedocs.io - black
+
+
+example run - black itunes.py (this formats the code and rewrites it)
