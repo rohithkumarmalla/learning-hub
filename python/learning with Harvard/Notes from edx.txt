@@ -18,6 +18,12 @@ try except
 Libraries
 APIs
 Modules & Packages
+random
+Style
+Unit Tests
+File I/O
+Sorted & lambda
+Using pillow library
 *************************
 
 
@@ -28,7 +34,7 @@ python hello.py --> runs the file
 Pseudocode - Structuring code using comments
 
 We can add a default value inside functions 
-def hello(name="world"):
+def hello("name"="world"):
 
 terminal commands
 ls
@@ -43,7 +49,7 @@ rmdir
 clear
 
 to change global variables write
-global <variable name>
+global <variable "name">
 
 we can use while loop to run infinately until user gives correct input
 
@@ -52,34 +58,37 @@ for _ in range(3):
 
 we can use print to sep and control its end
 
+a = 2
+if isinstance(a, (int, float)):
+  print('a is int or float')
 
 ## Dictionaries
 
-name age gender
+"name" age gender
 harry 20 Male
 peter 20 Male
 angel 18 FeMale
 
 dict = [
-{"name": "harry", "age": 20, "gender": "male"},
-{"name": "peter", "age": 20, "gender": "male"},
-{"name": "angel", "age": 18, "gender": "female"},
+{""name"": "harry", "age": 20, "gender": "male"},
+{""name"": "peter", "age": 20, "gender": "male"},
+{""name"": "angel", "age": 18, "gender": "female"},
 ]
 
-name age gender
+"name" age gender
 harry 20 Male
-name age gender
+"name" age gender
 peter 20 Male
-name age gender
+"name" age gender
 angel 18 FeMale
 
 
 dict = 
-{ "name": "value",
-  "name": "value"
+{ ""name"": "value",
+  ""name"": "value"
 }
 
-dict["name"] --> to get value
+dict[""name""] --> to get value
 dict.get("address", NA) --> add a default value if the key is not accesable
 for d in dict: --> to get keys
    print(d)
@@ -181,7 +190,7 @@ except requestsHTTPError:
 
 
 ## Modules & Packages
-we can use our functions as Modules, make sure the file has __name__ == __"main"__ in it
+we can use our functions as Modules, make sure the file has __"name"__ == __"main"__ in it
 or it will run the entire code again
 
 and the syntax in the current file will be
@@ -218,3 +227,153 @@ black.readthedocs.io - black
 
 
 example run - black itunes.py (this formats the code and rewrites it)
+
+## Unit Tests
+testing our own code
+
+write a new file and code like:
+import square
+
+if square(2) != 4:
+  print('2 squared is 4')
+
+if square(3) != 9:
+  print('3 squared is 9')
+
+we can use assert to reduce the testing code
+try:
+  assert square(2) == 4
+except AssertionError:
+  print('2 square is not 4')
+
+To even reduce this code use a package - pytest
+pip install pytest
+to run --> pytest test_calculator.py
+
+def test_square():
+  assert square(2) == 4
+  assert square(-2) == 4
+  assert square(3) == 9
+
+Its better to write these units(functions) separately, or the error will be seen only for first breaking line alone
+
+to validate errors 
+with pytest.raises(ValurError):
+  square('cat')
+
+assert convert(0.001) == pytest.approx(14.9596860.691, abs=1e-2)
+
+## File I/O
+file = open(""name"s.txt", "w")
+file.write("name")
+file.close()
+
+"w" - it writes the existing file
+"a" - it appends to the existing file
+
+no need to call file.close() instead do :
+
+"name" = input("Whats your "name"")
+with open(""name"s.txt", "a") as file:
+  file.write(f"{"name"}\n")
+
+ To read -
+with open(""name"s.txt", "r") as file:
+  lines = file.readlines()
+for line in lines:
+  print("hello,", line.rstrip())
+
+
+with open(""name"s.txt") as file:
+  for line in sorted(file):
+    print(f"hello, {"name"}")
+
+csv is a wellknown file (comma separated values)
+
+in a file we have 
+hermoine, griffindor
+harry, friffindor
+
+we have to write logic to exctract each line with split
+append it to a list and print it
+
+
+### Sorted & lambda
+s is [{"name": a, "house":b} {"name": c, "house":d} {"name": e, "house":f}]
+we can sort by sorted
+----
+def get_home(a):
+  return a["house"]
+
+for l in sorted(s, key = get_home):
+  print(f"{s["name"]} is in {s["house"]}")
+----
+or
+----
+for l in sorted(s, key = lambda x: x["house"]):
+  print(f"{s["name"]} is in {s["house"]}")
+----
+
+
+We can escape all the formatting like split while reading line by line through:
+
+import csv
+students = []
+reader = csv.reader(file)
+  for name, home in reader:
+    students.append({"name": name, "home": home})
+or
+
+for row in reader:
+  students.append(row)
+
+if we have header in the csv file we can read the file as:-
+reader = csv.DictReader(file)
+now every line is a dictionary (excep 1st line as it will be treated as keys)
+
+for row in reader:
+ s.append( {"name": row["name"]} )
+
+name, home
+Harry, "Number Four, Privet Drive"
+Ron, The Burrow
+Draco, Malfoy Manor
+
+To write
+
+name = input()
+home = input()
+with open("students.csv", "a") as file:
+  writer = csv.writer(file):
+  writer.writerrow([name, home]) # this will write the values in a comma separated for us
+
+or 
+
+writer = csv.DictWriter(file, fieldnames = ["name", "home"])
+writer.writerow({"name": name, "home": home}) #the csv should have name,home in the first row
+
+### Using pillow library
+
+from PIL import Image
+
+images = []
+
+for arg in sys.argv[1:]: # in command line we will pass the gif files (or static image files)
+  image = Image.open(arg)
+  images.append(image)
+
+images[0].save(
+  "costumes.gif", save_all = True, append_images = [images[1]], duration = 200, loop = 0
+)
+
+this will save the gif in a file called costumes.gif open the costumes.gif file we'll see animated file
+
+from PIL import Image, ImageFilter
+
+def main():
+  with Image.open("in.jpeg") as img:
+    img = img.rotate(180)
+    img = img.filter(ImageFilter.BLUR)
+    img = img.filter(ImageFilter.FIND_EDGES)
+    img.save("out.jpeg")
+
