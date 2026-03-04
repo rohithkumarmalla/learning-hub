@@ -329,10 +329,10 @@ for row in reader:
 
 if we have header in the csv file we can read the file as:-
 reader = csv.DictReader(file)
-now every line is a dictionary (excep 1st line as it will be treated as keys)
+now every line is a dictionary (except 1st line as it will be treated as keys)
 
 for row in reader:
- s.append( {"name": row["name"]} )
+  s.append( {"name": row["name"]} )
 
 name, home
 Harry, "Number Four, Privet Drive"
@@ -345,7 +345,7 @@ name = input()
 home = input()
 with open("students.csv", "a") as file:
   writer = csv.writer(file):
-  writer.writerrow([name, home]) # this will write the values in a comma separated for us
+  writer.writerow([name, home]) # this will write the values in a comma separated for us
 
 or 
 
@@ -377,3 +377,18 @@ def main():
     img = img.filter(ImageFilter.FIND_EDGES)
     img.save("out.jpeg")
 
+
+with open("file1", "r") as file, open("file2", "r") as doc:
+  reader = csv.DictReader(key)
+  writer = csv.DictWriter(doc, fieldnames = reader.fieldnames + "column"
+  writer.writeheader() # this writes the header
+
+If we read the file as DictReader
+and print the variable this will print the entire dict with key, value format
+
+
+row = file.read() "Gives the entire content in a single big string"
+row = file.readlines() "read the file line by line and store in a list"
+
+file.write("Hello\nHi")
+file.writelines(["Hello", "Hi"])
