@@ -30,6 +30,7 @@ Using pillow library
 on VS Code Terminal
 code hello.py --> creates a python file
 python hello.py --> runs the file
+rm hello.py --> removes the file
 
 Pseudocode - Structuring code using comments
 
@@ -44,8 +45,6 @@ rm
 mkdir
 cd
 rmdir
-cd
-rmdir
 clear
 
 to change global variables write
@@ -57,6 +56,7 @@ We can use _ in a for loop
 for _ in range(3):
 
 we can use print to sep and control its end
+print('Hello', end = ' ')
 
 a = 2
 if isinstance(a, (int, float)):
@@ -77,8 +77,10 @@ dict = [
 
 "name" age gender
 harry 20 Male
+
 "name" age gender
 peter 20 Male
+
 "name" age gender
 angel 18 FeMale
 
@@ -95,7 +97,8 @@ for d in dict: --> to get keys
 for d in dict.keys(): --> to get keys
    print(d)
 
-.values --> to get values
+.values() --> to get values
+
 dict.update({"address": "New York", "Code": "NY"}) --> Add a dictionary to update the dict
 
 ### String Methods
@@ -115,7 +118,7 @@ b = int(f'{a:,}')   # output 100,000,000
 Lists
 .pop()
 .extend() - add another list
-.reverese()
+.reverse()
 
 import sys
 sys.getsizeof()
@@ -214,11 +217,10 @@ while debugging we need to keep the values samw even for random function
 seed # keeps the random function gives same values every time
 
 random.seed(1) # always gives ["jack", "king"]
-random.choices(cards, k=2)
 
 ## Style
 peps.python.org/pep-0008/
-pylint (pip install) - shows the changes
+pylint (pip install) - This suggest the style changes
 
 pycodestyle.pycqa.org - pycodestyle - corrects the styles
 pycodestyle --first optparse.py
@@ -292,27 +294,10 @@ csv is a wellknown file (comma separated values)
 
 in a file we have 
 hermoine, griffindor
-harry, friffindor
+harry, griffindor
 
 we have to write logic to exctract each line with split
 append it to a list and print it
-
-
-### Sorted & lambda
-s is [{"name": a, "house":b} {"name": c, "house":d} {"name": e, "house":f}]
-we can sort by sorted
-----
-def get_home(a):
-  return a["house"]
-
-for l in sorted(s, key = get_home):
-  print(f"{s["name"]} is in {s["house"]}")
-----
-or
-----
-for l in sorted(s, key = lambda x: x["house"]):
-  print(f"{s["name"]} is in {s["house"]}")
-----
 
 
 We can escape all the formatting like split while reading line by line through:
@@ -332,7 +317,7 @@ reader = csv.DictReader(file)
 now every line is a dictionary (except 1st line as it will be treated as keys)
 
 for row in reader:
-  s.append( {"name": row["name"]} )
+  s.append( {"name": row["name"], row["house"]} )
 
 name, home
 Harry, "Number Four, Privet Drive"
@@ -351,6 +336,48 @@ or
 
 writer = csv.DictWriter(file, fieldnames = ["name", "home"])
 writer.writerow({"name": name, "home": home}) #the csv should have name,home in the first row
+
+
+with open("file1", "r") as file, open("file2", "r") as doc:
+  reader = csv.DictReader(doc)
+  writer = csv.DictWriter(doc, fieldnames = reader.fieldnames + ["column"]
+  writer.writeheader() # this writes the header
+
+If we read the file as DictReader
+and print the variable this will print the entire dict with key, value format
+
+
+row = file.read() "Gives the entire content in a single big string"
+row = file.readlines() "read the file line by line and store each line as a value in a list"
+
+file.write("Hello\nHi")
+file.writelines(["Hello", "Hi"])
+
+
+### Sorted & lambda
+s is [{"name": a, "house":b} {"name": c, "house":d} {"name": e, "house":f}]
+we can sort by sorted
+----
+def get_home(a):
+  return a["house"]
+
+for l in sorted(s, key = get_home):
+  print(f"{s["name"]} is in {s["house"]}")
+
+----
+or
+----
+for l in sorted(s, key = lambda x: x["house"]):
+  print(f"{s["name"]} is in {s["house"]}")
+----
+
+we can give two keys in the sorted keys
+for l in sorted(s, key = lambda x: (x["house"], x["name"]):
+  print(f"{s["name"]} is in {s["house"]}")
+
+one in ascending and other in descending
+lambda x: (x["house"], -x["name"])
+
 
 ### Using pillow library
 
@@ -376,19 +403,3 @@ def main():
     img = img.filter(ImageFilter.BLUR)
     img = img.filter(ImageFilter.FIND_EDGES)
     img.save("out.jpeg")
-
-
-with open("file1", "r") as file, open("file2", "r") as doc:
-  reader = csv.DictReader(key)
-  writer = csv.DictWriter(doc, fieldnames = reader.fieldnames + "column"
-  writer.writeheader() # this writes the header
-
-If we read the file as DictReader
-and print the variable this will print the entire dict with key, value format
-
-
-row = file.read() "Gives the entire content in a single big string"
-row = file.readlines() "read the file line by line and store in a list"
-
-file.write("Hello\nHi")
-file.writelines(["Hello", "Hi"])
