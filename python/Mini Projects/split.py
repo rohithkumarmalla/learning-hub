@@ -2,20 +2,49 @@ import json
 def main():
 # gathering information
     global crew, bill, items
-    crew = ['ro','ha', 'su', 'na', 'ad']
-    bill = {'veg Platter': 739,
-             'Chicken Tikka': 399,
-             'Water': 18,
-             'Missi Roti': 70,
-             'Garlic Naan': 90,
-             'Chilli Naan': 90,
-             'Paneer Tikka Lababdar': 399,
-             'Prawns Biryani': 479,
-             'Thumbs Up': 178,
-             'Jalebi With Rabdi': 199}
+    response = ["yes", "ok", "k", "kk"]
+    print("Who are all sharing the bill? Eg: sachin,dhoni,virat")
+    while True:
+        crew = input("Enter all the names: ").replace(',', ' ').split()
+        tmp = input(f'\nAre you "ok" to proceed with the names {crew}\n(yes or ok to proceed): ')
+        if tmp.lower().strip() in response and len(crew) > 1:
+            break
+
+    print("\nNow enter item names and its price with comma separated\nEg: Veg Platter,120 and type 'ok' when you added all the items.")
+    bill = {}
+    while True:
+        tmp = input(':')
+        try:
+            if tmp.lower().strip() in response:
+                break
+            key, value = tmp.split(',')
+            bill[key] = float(value)
+        except:
+            print(f'please enter "{tmp}" in valid format: Veg Platter,799')
+            pass
+
+    print(f"\n{bill}\n")
+    items = list(bill.keys())
+    while True:
+        tmp = input("Enter 'ok' or 'update' or 'remove' accordingly: ")
+        if tmp.lower().strip() in response:
+            break
+        elif tmp.lower().strip() == 'update':
+            name = get_itemName("Enter the item's name: ")
+            amount = get_number("Enter value: ")
+            bill[name] = amount
+        elif tmp.lower().strip() == 'remove':
+            name = get_itemName("Enter the item's name: ")
+            bill.pop(name)
+        else:
+            continue
+        print(f"\n{bill}\n")
+    items = list(bill.keys())
+
+
     gst = get_number("How much 'gst' was charged [5%]? ")
     serviceCharge = get_number("Enter service charge: ")
-    bookedBy = get_name("Who booked the table? ")
+    bookedBy = get_crewName("Who booked the table? ")
     discount = get_number("How much discount you got (in amount): ")
     coupon = get_number("Enter coupons or dine cash(in amount): ")
     cFee = get_number("Enter How much the app's convinence fee was charged: ")
@@ -24,9 +53,8 @@ def main():
     cashback = ("Enter cashback(in amount): ")
     tip = get_number("Enter Tip [0]: ")
     if tip != 0:
-        tipBy = get_name("Who paid the tip? ")
+        tipBy = get_crewName("Who paid the tip? ")
     
-    items = list(bill.keys())
     extras = discount + coupon - cFee - cGst
 
 # Seggregation keeps a record of items as keys: and its consumer's list as values: 
@@ -99,19 +127,24 @@ def get_number(msg):
             return value
         except ValueError:
             continue
+    msg = "Please enter a valid number: "
 
 # prompts the user until the name he entered matches in the crew
-def get_name(msg):
+def get_crewName(msg):
     while True:
         name = input(msg)
         for i in crew:
             if i.startswith(name):
                 return i
+        msg = "we don't find any match, Try Again: "
 
-def get_itemName(name):
-    for i in items:
-        if name in i:
-            return i
+def get_itemName(msg):
+    while True:
+        name = input(msg)
+        for i in items:
+            if name in i:
+                return i
+        msg = "please enter a valid item name"
 
 if __name__ == "__main__":
     main()
