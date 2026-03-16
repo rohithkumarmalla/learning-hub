@@ -13,12 +13,4 @@ for key, values in data.items():
 
 # print(tabulate(rows, headers=["", "x", "y"], tablefmt="grid"))
 
-print(cowsay.daemon("hello"))
-print(cowsay.fox("hello"))
-print(cowsay.ghostbusters("hello"))
-print(cowsay.kitty("hello"))
-print(cowsay.meow("hello"))
-print(cowsay.octopus("hello"))
-print(cowsay.pig("hello"))
-print(cowsay.stegosaurus("hello"))
-print(cowsay.stimpy("hello"))
+print(cowsay.tux("hello"))

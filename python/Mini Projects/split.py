@@ -13,7 +13,8 @@ def main():
         tmp = input(f'\nAre you "ok" to proceed with the names {crew}\n(yes or ok to proceed): ')
         if tmp.lower().strip() in response and len(crew) > 1:
             break
-    # get the bill details and ask for confirmation/update/remove
+
+# get the bill details and ask for confirmation/update/remove
     print("\nNow enter item names and its price with comma separated\nEg: Veg Platter,120 and type 'ok' when you added all the items.")
     bill = {}
     while True:
@@ -26,7 +27,7 @@ def main():
         except:
             print(f'please enter "{tmp}" in valid format: Veg Platter,799')
             pass
-    # print and ask for confirmation/update/remove
+# print and ask for confirmation/update/remove
     print(f"\n{bill}\n")
     items = list(bill.keys())
     while True:
@@ -139,7 +140,7 @@ def get_crewName(msg):
     while True:
         name = input(msg).lower().strip()
         for i in crew:
-            if i.lower().split().startswith(name):
+            if i.startswith(name):
                 return i
         msg = "we don't find any match, Try Again: "
 

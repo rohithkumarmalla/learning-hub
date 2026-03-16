@@ -24,6 +24,7 @@ Unit Tests
 File I/O
 Sorted & lambda
 Using pillow library
+regular expressions
 *************************
 
 
@@ -61,6 +62,15 @@ print('Hello', end = ' ')
 a = 2
 if isinstance(a, (int, float)):
   print('a is int or float')
+
+
+a= True
+if a:
+ ...
+or
+
+if a:= True:
+  ...
 
 ## Dictionaries
 
@@ -403,3 +413,61 @@ def main():
     img = img.filter(ImageFilter.BLUR)
     img = img.filter(ImageFilter.FIND_EDGES)
     img.save("out.jpeg")
+
+## regular expressions
+inbuilt package re
+import re
+
+re.search("pattern", string, flag=0)
+
+pattern = r".+"
+
+. - any char
+* - 0 or more times
++ - 1 or more times
+? - 0 or 1 times (optional)
+{m} - m times
+{m, n} - range of m to n times
+
+^.....$ - start and must be this pattern
+
+[] - to allow only the specfied chars in the braces
+eg: [',lo] allows only these chanracters
+
+..* means . .* i.e 
+. any char
+.* any charachter 0 or more times
+
+snippet 
+str = rohith@gmail.com
+re.search(r"^[a-z]+@[a-z]+\.com$", str)
+
+one or more characters from a-z, @, one or more characters from a-z, .com
+backslash used to tell . is not any character but period itself
+
+we can use 
+\w - any word inc all alphabets with both upper & lowercase and _
+\W - opp to \w
+\d - any digit
+\D - opp to \d
+\s - whitespace
+\S - not whitespace
+
+[ardc] allows a, r, d, c
+[^cvb] except c, v, b
+
+we can catch the sequence
+name = "rohith malla"
+matches = re.search(r"^(.+), (.+)$", name)
+if matches:
+  first, last = matches.groups()
+
+or
+
+  last = matches.group(2)
+  first = matches.group(1)
+
+simply
+if matches := matches = re.search(r"^(.+), (.+)$", name):
+  name = matches.group(2) + " " + matches.group(2)
+print("Hi {name}")
