@@ -25,6 +25,8 @@ File I/O
 Sorted & lambda
 Using pillow library
 regular expressions
+OOPS
+Getters & Setters
 *************************
 
 
@@ -71,6 +73,10 @@ or
 
 if a:= True:
   ...
+
+return a, b 
+this actually returning a tuple with two values
+
 
 ## Dictionaries
 
@@ -270,7 +276,7 @@ def test_square():
 Its better to write these units(functions) separately, or the error will be seen only for first breaking line alone
 
 to validate errors 
-with pytest.raises(ValurError):
+with pytest.raises(ValueError):
   square('cat')
 
 assert convert(0.001) == pytest.approx(14.9596860.691, abs=1e-2)
@@ -471,3 +477,93 @@ simply
 if matches := matches = re.search(r"^(.+), (.+)$", name):
   name = matches.group(2) + " " + matches.group(2)
 print("Hi {name}")
+
+re.match
+re.format
+re.sub(pattern, repl, string, count=0, flag=0)
+re.split
+re.findall
+
+we can add names to the capture groups
+pattern = r"(?P<country_code>\+\d{1,3}) \d{3}-\d{3}-\d{4}"
+match = re.search(pattern, number)
+print(match.group("country_code"))
+
+there are few libraries that are alredy did the logic to valudate and chek the inputs
+few are 
+pip install validator-collection
+pip install validators
+
+from validators-collection import validators
+or
+import validators
+
+email = validators.email("abc.abc.com")
+returns True if valid
+
+#OOPS
+classs & objects
+
+class is a piece if code but object is an actual unit that was stored in memory
+
+we can instantiate a class or construct an object
+
+class Student:
+  ...
+
+def main():
+  student = Student()
+  student.name = name
+  student.age = age
+
+now name and age will be stored as instance variable to that object
+
+we can create multiple objects
+
+studentx = Student()
+studenty = Student()
+...
+
+individual variable are stored in their respective object's memory
+
+instead of asiignig here we can do that on class
+
+class Student:
+  def init(self, name, house):
+    self.name = name
+    self.house = house
+
+def main():
+  studentx = Student(name, house)
+
+we can also add validations & logic inside the class itself
+
+by doing so the validations will only work when the object was initialized
+and we can actually modify the values escaping the validations
+
+## so Getters & Setters
+class Student:
+  def init(self, name, house):
+    self.name = name
+    self.house = house
+
+  @getter
+  def name():
+    return self._name
+
+  @name.setter
+  def name(self, name)
+    # logic or validation
+    self._name = name
+
+by this even when initializing, the assigning will pass only through setter
+or if anyone decide to change the value this will also go tho the setter
+eg: self.name = "rohith" will pass through the setter
+
+even self.name = name will alsogoes through it. (= make the python gothrough the setter)
+
+without _ self.name will be treated as a function and the loop runs endless
+
+so here self.name will runs the name function and stores the values in _name variable.
+
+we also have instace methods and class methods
